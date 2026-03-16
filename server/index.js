@@ -1,7 +1,9 @@
 const express = require('express'); // Import the Express library
+const cors = require('cors');
 const app = express(); // Create an instance of the Express application
 const PORT = 5000; // port number for server, will change if app is actually deployed
 
+app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => { // Define a route for the root URL

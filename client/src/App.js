@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect} from 'react';
 
 function App() {
+  
+  
+  const [cards, setCards] = useState([]); // state variable, holds flashcards and is updated when cards are added or deleted
+
+  useEffect(() => { // fetch flashcards from server when component mounts
+    fetch('http://localhost:5000/api/cards').then(res => res.json()).then(data => setCards(data)); // fetches cards, then sets the cards to the data
+    // localhost:5000 as current server
+  }, []);
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Flashcard App</h1>
+      <p>Number of cards: {cards.length}</p>
     </div>
   );
 }
+
 
 export default App;
